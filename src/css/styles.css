@@ -1,0 +1,137 @@
+/**
+  |============================
+  | include css partials with
+  | default @import url()
+  |============================
+*/
+/* Common styles */
+@import url('./reset.css');
+@import url('./base.css');
+@import url('./loader.css');
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36px;
+  margin-bottom: 32px;
+}
+label {
+  margin-right: 8px;
+}
+
+input {
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 272px;
+  height: 40px;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #808080;
+}
+
+input:hover {
+  border: 1px solid #000;
+  border-radius: 4px;
+  width: 272px;
+  height: 40px;
+}
+
+input:focus {
+  border: 1px solid #4e75ff;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+
+  text-align: center;
+
+  border-radius: 8px;
+  width: 75px;
+  height: 40px;
+
+  background-color: #4e75ff;
+  border: #4e75ff;
+}
+
+button:hover {
+  background: #6c8cff;
+  border: #6c8cff;
+}
+
+.gallery {
+  width: 1128px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item {
+  width: 360px;
+  height: 200px;
+  border: 1px solid #808080;
+  width: 360px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+.item-link {
+  width: 360px;
+  height: 200px;
+}
+
+.item-img {
+  width: 360px;
+  height: 152px;
+  object-fit: cover;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-evenly;
+}
+.span-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+.span-name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+.span-value {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 2;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
