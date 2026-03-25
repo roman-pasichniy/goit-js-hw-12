@@ -15,28 +15,29 @@ const input = document.querySelector('input');
 
 form.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
+async function handleSubmit(event) {
   event.preventDefault();
 
-  const inputValue = input.value.trim();
+  try {
+    const inputValue = input.value.trim();
 
-  if (!inputValue) {
-    return;
-  }
+    if (!inputValue) {
+      return;
+    }
 
-  clearGallery();
+    clearGallery();
 
-  showLoader();
+    showLoader();
 
-  getImagesByQuery(inputValue)
-    .then(data => {
-      if (!data.hits || data.hits.length === 0) {
-        throw new Error('No images');
-      }
+    const data = await getImagesByQuery(inputValue);
 
-      createGallery(data.hits);
-    })
-    .catch(() => {
+    if (!data.hits || data.hits.length === 0) {
+      throw new Error('No images');
+    }
+
+    createGallery(data.hits);
+  } catch {
+    error => {
       iziToast.error({
         message:
           'Sorry, there are no images matching your search query. Please try again!',
@@ -44,10 +45,10 @@ function handleSubmit(event) {
         timeout: 2000,
         progressBar: false,
       });
-    })
-    .finally(() => {
-      hideLoader();
+    };
+  }
 
-      form.reset();
-    });
+  hideLoader();
+
+  form.reset();
 }
