@@ -80,6 +80,16 @@ button:hover {
   border: #6c8cff;
 }
 
+.btn-load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 10px;
+  width: 125px;
+  height: 40px;
+}
+
 .gallery {
   width: 1128px;
   display: flex;

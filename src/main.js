@@ -13,6 +13,9 @@ import { getImagesByQuery } from './js/pixabay-api';
 const form = document.querySelector('.form');
 const input = document.querySelector('input');
 
+let page = 1;
+let perPage = 15;
+
 form.addEventListener('submit', handleSubmit);
 
 async function handleSubmit(event) {
@@ -36,16 +39,19 @@ async function handleSubmit(event) {
     }
 
     createGallery(data.hits);
-  } catch {
-    error => {
-      iziToast.error({
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        position: 'topRight',
-        timeout: 2000,
-        progressBar: false,
-      });
-    };
+
+    page += 1;
+
+    if (page > 1) {
+    }
+  } catch (error) {
+    iziToast.error({
+      message:
+        'Sorry, there are no images matching your search query. Please try again!',
+      position: 'topRight',
+      timeout: 2000,
+      progressBar: false,
+    });
   }
 
   hideLoader();
