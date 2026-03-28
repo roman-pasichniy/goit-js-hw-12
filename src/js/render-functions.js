@@ -47,7 +47,7 @@ export function createGallery(arr) {
     )
     .join('');
 
-  galleryEl.innerHTML = markup;
+  galleryEl.insertAdjacentHTML('beforeend', markup);
 
   if (!gallery) {
     gallery = new SimpleLightbox('.gallery a', {
@@ -64,9 +64,9 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  loaderEl.style.display = 'inline-block';
+  loaderEl.classList.remove('is-hidden');
 }
 
 export function hideLoader() {
-  loaderEl.style.display = 'none';
+  loaderEl.classList.add('is-hidden');
 }

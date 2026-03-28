@@ -81,13 +81,15 @@ button:hover {
 }
 
 .btn-load-more {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  gap: 10px;
-  width: 125px;
+  display: block;
+  margin: 32px auto;
+  padding: 8px 16px;
+  width: auto;
   height: 40px;
+}
+
+.btn-load-more.is-hidden {
+  display: none;
 }
 
 .gallery {
