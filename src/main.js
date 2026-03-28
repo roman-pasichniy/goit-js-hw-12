@@ -6,6 +6,8 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
+  showLoadMore,
+  hideLoadMore,
 } from './js/render-functions';
 
 import { getImagesByQuery } from './js/pixabay-api';
@@ -32,8 +34,7 @@ async function handleSubmit(event) {
   page = 1;
 
   clearGallery();
-  loadMoreBtn.classList.add('is-hidden');
-
+  hideLoadMore();
   showLoader();
 
   try {
@@ -45,8 +46,15 @@ async function handleSubmit(event) {
 
     createGallery(data.hits);
 
-    if (data.totalHits > perPage) {
-      loadMoreBtn.classList.remove('is-hidden');
+    const totalPages = Math.ceil(data.totalHits / perPage);
+
+    if (totalPages > 1) {
+      showLoadMore();
+    } else {
+      iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
     }
 
     page += 1;
@@ -58,14 +66,15 @@ async function handleSubmit(event) {
       timeout: 2000,
       progressBar: false,
     });
+  } finally {
+    hideLoader();
   }
-
-  hideLoader();
 
   form.reset();
 }
 
 async function handleLoadMore() {
+  hideLoadMore();
   showLoader();
 
   try {
@@ -75,9 +84,9 @@ async function handleLoadMore() {
 
     const totalPages = Math.ceil(data.totalHits / perPage);
 
-    if (page >= totalPages) {
-      loadMoreBtn.classList.add('is-hidden');
-
+    if (page < totalPages) {
+      showLoadMore();
+    } else {
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
         position: 'topRight',
@@ -85,9 +94,21 @@ async function handleLoadMore() {
     }
 
     page += 1;
-  } catch (error) {
-    console.log(error);
-  }
 
-  hideLoader();
+    const { height } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: height * 2,
+      behavior: 'smooth',
+    });
+  } catch (error) {
+    iziToast.error({
+      message: 'Something went wrong. Please try again!',
+      position: 'topRight',
+    });
+  } finally {
+    hideLoader();
+  }
 }

@@ -11,7 +11,7 @@ export async function getImagesByQuery(query, page, perPage) {
     safesearch: true,
     key,
     page,
-    per_page: perPage,
+    per_page: Math.max(perPage, 15),
   };
 
   const res = await axios.get(URL, { params });
